@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Calculadora</title>
+    <style>
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: darkgrey;
+}
+
+.container {
+  width: 350px;
+  height: 600px;
+  background-color: rgb(247, 186, 186);
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: 10% 15% 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  border: 2px solid;
+  box-shadow: 10px 10px 16px 2px rgba(0, 0, 0, 0.49);
+  -webkit-box-shadow: 10px 10px 16px 2px rgba(0, 0, 0, 0.49);
+  -moz-box-shadow: 10px 10px 16px 2px rgba(0, 0, 0, 0.49);
+}
+
+/* ******* DARKMODE ******* */
+
+.btn-darkmode {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-left: 80%;
+}
+.bkg-darkmode {
+  display: flex;
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ball-darkmode {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: gray;
+  border-radius: 50px;
+  margin: 0 5px;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.ball-darkmode:hover {
+  cursor: pointer;
+}
+/* ******* display ******* */
+.display {
+  display: flex;
+  width: 300px;
+  height: 50px;
+  font-size: 25px;
+  background-color: rgb(255, 255, 255);
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  border: solid 2px rgb(59, 59, 59);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+/* ******* BOTONERA ******* */
+
+.btn-container {
+  width: 340px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 15px 5px;
+  grid-template-areas:
+    ". . . ."
+    ". . . ."
+    ". . . ."
+    ". . . ."
+    "cero . igual igual";
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+.btn {
+  background-color: rgb(247, 104, 104);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: sans-serif;
+  text-decoration: none;
+  font-size: 30px;
+  box-shadow: -4px -2px 11px 2px rgba(0, 0, 0, 0.45) inset;
+  -webkit-box-shadow: -4px -2px 11px 2px rgba(0, 0, 0, 0.45) inset;
+  -moz-box-shadow: -4px -2px 11px 2px rgba(0, 0, 0, 0.45) inset;
+}
+.btn:hover {
+  background-color: rgb(250, 68, 68);
+}
+
+.special {
+  background-color: rgb(152, 73, 73);
+}
+.special:hover {
+  background-color: rgb(124, 50, 50);
+}
+
+/* DARKMODE BTNS */
+
+.dmode-bg {
+  background-color: rgb(1, 1, 74);
+}
+
+.activedmode {
+  background-color: rgb(132, 132, 132);
+}
+.ball-ligthmode {
+  background-color: white;
+  text-align: center;
+}
+
+.dmode-btn {
+  background-color: rgb(177, 55, 177);
+}
+.dmode-btn:hover {
+  background-color: rgb(145, 34, 145);
+}
+
+.dmode-btn-special {
+  background-color: blue;
+}
+.dmode-btn-special:hover {
+  background-color: rgb(2, 2, 196);
+}
+
+.btn-cero {
+  width: 200%;
+  border-radius: 30px;
+  grid-area: cero;
+}
+
+.igual {
+  width: 100%;
+  border-radius: 30px;
+  grid-area: igual;
+}
+
+/* **********   FOOTER   ***********  */
+
+.pie-pagina h3,
+p {
+  text-align: center;
+}
+
+.social-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+i {
+  font-size: 25px;
+  color: black;
+}
+
+.social-div a {
+  margin: 0px 15px 40px 15px;
+}
+
+/* **********   FOOTER   ***********  */
+
+
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <div class="btn-darkmode">
+          <div class="bkg-darkmode">
+            <div class="ball-darkmode">🌓</div>
+          </div>
+        </div>
+        <div class="display"></div>
+        <div class="btn-container">
+          <a href="#" class="btn special" id="ac">AC</a>
+          <a href="#" class="btn special" id="borrar">^</a>
+          <a href="#" class="btn special" id="sobrante">%</a>
+          <a href="#" class="btn special" id="divisor">/</a>
+          <a href="#" class="btn" id="siete">7</a>
+          <a href="#" class="btn" id="ocho">8</a>
+          <a href="#" class="btn" id="nueve">9</a>
+          <a href="#" class="btn special" id="multi">X</a>
+          <a href="#" class="btn" id="cuatro">4</a>
+          <a href="#" class="btn" id="cinco">5</a>
+          <a href="#" class="btn" id="seis">6</a>
+          <a href="#" class="btn special" id="menos">-</a>
+          <a href="#" class="btn" id="uno">1</a>
+          <a href="#" class="btn" id="dos">2</a>
+          <a href="#" class="btn" id="tres">3</a>
+          <a href="#" class="btn special" id="mas">+</a>
+          <a href="#" class="btn btn-cero" id="cero">0</a>
+          <a href="#" class="btn special igual" id="igual">=</a>
+        </div>
+      </div>
+    </main>
+    <footer class="pie-pagina">
+      <h3>Creado por Boris Bodeman &copy;</h3>
+      <p>Follow me</p>
+      <div class="social-div">
+        <a
+          href=https://github.com/BodemanBoris
+          target="_b
+        "
+          ><i class="fa-brands fa-github"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/in/boris-bodeman-954153a1/"
+          target="_b
+        "
+          ><i class="fa-brands fa-linkedin"></i
+        ></a>
+      </div>
+    </footer>
+
+    <script>
+      const d = document,
+  w = window,
+  n = navigator,
+  ls = localStorage;
+
+let $numberBtn = d.querySelectorAll(".btn");
+const $display = d.querySelector(".display");
+const $limpiar = d.getElementById("ac");
+let a;
+let b;
+
+let moon = "🌓",
+  sun = "🔆";
+
+let $darkmodeBtn = d.querySelector(".ball-darkmode");
+let $darkmodeBg = d.querySelector(".bkg-darkmode");
+let $numberBtnSpecial = d.querySelectorAll(".special");
+let $container = d.querySelector(".container");
+
+let darkMode = () => {
+  $darkmodeBtn.classList.add("ball-ligthmode");
+  $darkmodeBtn.textContent = sun;
+  $darkmodeBg.classList.add("activedmode");
+  $container.classList.add("dmode-bg");
+  $numberBtn.forEach((btn) => btn.classList.add("dmode-btn"));
+  $numberBtnSpecial.forEach((btn) => btn.classList.add("dmode-btn-special"));
+  ls.setItem("theme", "dark");
+};
+
+let lightMode = () => {
+  $darkmodeBtn.classList.remove("ball-ligthmode");
+  $darkmodeBtn.textContent = moon;
+  $darkmodeBg.classList.remove("activedmode");
+  $container.classList.remove("dmode-bg");
+  $numberBtn.forEach((btn) => btn.classList.remove("dmode-btn"));
+  $numberBtnSpecial.forEach((btn) => btn.classList.remove("dmode-btn-special"));
+  ls.setItem("theme", "light");
+};
+
+$darkmodeBtn.addEventListener("click", (e) => {
+  if ($darkmodeBg.innerText === sun) {
+    lightMode();
+  } else {
+    darkMode();
+  }
+});
+
+const btnPress = function (btn) {
+  $display.innerText += this.innerText;
+
+  if (this.innerText === "AC") {
+    $display.innerText = "";
+  }
+  if (this.innerText === "+") {
+    if ($display.innerText !== "") {
+      capturarA = $display.innerText;
+      $display.innerText = "";
+    }
+  } else if (this.innerText === "-") {
+    if ($display.innerText !== "") {
+      capturarA = $display.innerText;
+      $display.innerText = "";
+    }
+  } else if (this.innerText === "X") {
+    if ($display.innerText !== "") {
+      capturarA = $display.innerText;
+      $display.innerText = "";
+    }
+  } else if (this.innerText === "/") {
+    if ($display.innerText !== "") {
+      capturarA = $display.innerText;
+      $display.innerText = "";
+    }
+  } else if (this.innerText === "%") {
+    if ($display.innerText !== "") {
+      capturarA = $display.innerText;
+      $display.innerText = "";
+    }
+  } else if (this.innerText === "^") {
+    if ($display.innerText !== "") {
+      capturarA = $display.innerText;
+      $display.innerText = "";
+    }
+  }
+
+  if (this.innerText === "=" && capturarA.includes("+")) {
+    capturarB = $display.innerText;
+    $display.innerText =
+      parseInt(capturarA.substring(0, capturarA.length - 1)) +
+      parseInt(capturarB.substring(0, capturarB.length - 1));
+  } else if (this.innerText === "=" && capturarA.includes("-")) {
+    capturarB = $display.innerText;
+    $display.innerText =
+      parseInt(capturarA.substring(0, capturarA.length - 1)) -
+      parseInt(capturarB.substring(0, capturarB.length - 1));
+  } else if (this.innerText === "=" && capturarA.includes("X")) {
+    capturarB = $display.innerText;
+    $display.innerText =
+      parseInt(capturarA.substring(0, capturarA.length - 1)) *
+      parseInt(capturarB.substring(0, capturarB.length - 1));
+  } else if (this.innerText === "=" && capturarA.includes("/")) {
+    capturarB = $display.innerText;
+    $display.innerText =
+      parseInt(capturarA.substring(0, capturarA.length - 1)) /
+      parseInt(capturarB.substring(0, capturarB.length - 1));
+  } else if (this.innerText === "=" && capturarA.includes("%")) {
+    capturarB = $display.innerText;
+    $display.innerText =
+      parseInt(capturarA.substring(0, capturarA.length - 1)) %
+      parseInt(capturarB.substring(0, capturarB.length - 1));
+  } else if (this.innerText === "=" && capturarA.includes("^")) {
+    capturarB = $display.innerText;
+    $display.innerText =
+      parseInt(capturarA.substring(0, capturarA.length - 1)) **
+      parseInt(capturarB.substring(0, capturarB.length - 1));
+  }
+};
+
+$numberBtn.forEach((btn) => {
+  btn.addEventListener("click", btnPress);
+});
+
+d.addEventListener("DOMContentLoaded", (e) => {
+  if (ls.getItem("theme") === null) {
+    ls.setItem("theme", "light");
+  }
+  if (ls.getItem("theme") === "light") {
+    lightMode();
+  }
+  if (ls.getItem("theme") === "dark") {
+    darkMode();
+  }
+});
+    </script>
+  </body>
+</html>
